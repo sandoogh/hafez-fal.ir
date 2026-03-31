@@ -43,14 +43,8 @@
   </footer>
 
   <script>
-    function isDark() {
-      var t = document.documentElement.getAttribute('data-theme');
-      if (t === 'dark') return true;
-      if (t === 'light') return false;
-      return window.matchMedia('(prefers-color-scheme: dark)').matches;
-    }
     function toggleTheme() {
-      var next = isDark() ? 'light' : 'dark';
+      var next = document.documentElement.getAttribute('data-theme') === 'dark' ? '' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
     }

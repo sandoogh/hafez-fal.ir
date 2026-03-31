@@ -31,22 +31,6 @@
   --tafsir-border: #2a3444;
 }
 
-@media (prefers-color-scheme: dark) {
-  html:not([data-theme="light"]) {
-    --bg: #000a0b;
-    --text: #d5d9e0;
-    --text-muted: #7a8494;
-    --accent: #6cc4c7;
-    --accent-hover: #8ad4d6;
-    --border: #2a3444;
-    --link: #8ad4d6;
-    --btn-bg: #6cc4c7;
-    --btn-text: #000a0b;
-    --ghazal-link: #8ad4d6;
-    --ghazal-text: #8a9aaa;
-    --tafsir-border: #2a3444;
-  }
-}
 
 *, *::before, *::after {
   box-sizing: border-box;
