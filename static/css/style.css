@@ -1,0 +1,295 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&display=swap");
+
+:root {
+  --bg: #fff;
+  --text: #333;
+  --text-muted: #6e7783;
+  --accent: #288689;
+  --accent-hover: #609496;
+  --border: #609496;
+  --link: #609496;
+  --btn-bg: #288689;
+  --btn-text: #fff;
+  --ghazal-link: #609496;
+  --ghazal-text: #79929e;
+  --tafsir-border: #288689;
+}
+
+[data-theme="dark"] {
+  --bg: #000a0b;
+  --text: #d5d9e0;
+  --text-muted: #7a8494;
+  --accent: #6cc4c7;
+  --accent-hover: #8ad4d6;
+  --border: #2a3444;
+  --link: #8ad4d6;
+  --btn-bg: #6cc4c7;
+  --btn-text: #000a0b;
+  --ghazal-link: #8ad4d6;
+  --ghazal-text: #8a9aaa;
+  --tafsir-border: #2a3444;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]) {
+    --bg: #000a0b;
+    --text: #d5d9e0;
+    --text-muted: #7a8494;
+    --accent: #6cc4c7;
+    --accent-hover: #8ad4d6;
+    --border: #2a3444;
+    --link: #8ad4d6;
+    --btn-bg: #6cc4c7;
+    --btn-text: #000a0b;
+    --ghazal-link: #8ad4d6;
+    --ghazal-text: #8a9aaa;
+    --tafsir-border: #2a3444;
+  }
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  background-color: var(--bg);
+  color: var(--text);
+  font: 16px/1.8 Vazirmatn, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* Header / Nav */
+header {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+nav a {
+  color: var(--link);
+  font-weight: 400;
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--link);
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+}
+.theme-toggle:hover {
+  opacity: 0.7;
+}
+
+/* Main content */
+main {
+  flex: 1;
+}
+
+/* Home page */
+.home {
+  text-align: center;
+  padding: 4rem 0;
+}
+.site-icon {
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
+  margin-left: 0.5rem;
+}
+.home h1 {
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+.home p {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.btn:hover {
+  opacity: 0.85;
+  text-decoration: none;
+}
+
+/* Ghazal page */
+.ghazal {
+  text-align: center;
+}
+.ghazal h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.poem {
+  margin-bottom: 2rem;
+}
+.beyt {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+.mesra {
+  flex: 1;
+  min-width: 10rem;
+  max-width: 20rem;
+}
+.beyt .mesra:first-child {
+  text-align: left;
+}
+.beyt .mesra:last-child {
+  text-align: right;
+}
+
+@media (max-width: 600px) {
+  .beyt {
+    flex-direction: column-reverse;
+    gap: 0;
+    margin-bottom: 1.25rem;
+  }
+  .mesra {
+    text-align: center !important;
+    max-width: 100%;
+  }
+}
+
+.tafsir {
+  border-top: 1px solid var(--tafsir-border);
+  padding-top: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: right;
+  line-height: 2;
+}
+
+.ghazal-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-top: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+.ghazal-nav .nav-right,
+.ghazal-nav .nav-left,
+.ghazal-nav .nav-center {
+  flex: 1;
+}
+.ghazal-nav .nav-right {
+  text-align: right;
+}
+.ghazal-nav .nav-center {
+  text-align: center;
+}
+.ghazal-nav .nav-left {
+  text-align: left;
+}
+
+/* List page */
+.list-page {
+  text-align: right;
+}
+.list-page h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+.ghazal-list {
+  list-style: none;
+}
+.ghazal-list li {
+  padding: 0.4rem 0;
+}
+.ghazal-list a {
+  color: var(--ghazal-link);
+}
+
+/* About page */
+.about {
+  text-align: right;
+}
+.about h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+.about-body h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+.about-body h2:first-child {
+  margin-top: 0;
+}
+.about-body p {
+  margin-bottom: 1rem;
+  line-height: 2;
+}
+.about-body a {
+  color: var(--ghazal-link);
+}
+
+/* Footer */
+footer {
+  padding: 1rem 0;
+  margin-top: 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+footer::before {
+  content: "";
+  display: block;
+  width: 20rem;
+  max-width: 80%;
+  border-top: 1px solid var(--border);
+  margin: 0 auto 0.4rem;
+}
+footer a {
+  color: var(--text-muted);
+}

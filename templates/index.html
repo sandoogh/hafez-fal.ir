@@ -1,0 +1,12 @@
+  <main class="home">
+    <h1>فال حافظ</h1>
+    <p>جهت گرفتن فال نیت کرده و سپس بر روی دکمه گرفتن فال کلیک کنید</p>
+    <a href="#" class="btn" onclick="getRandomGhazal(); return false;">گرفتن فال</a>
+  </main>
+  <script>
+    function getRandomGhazal() {
+      var num = Math.floor(Math.random() * {total}) + 1;
+      var formatted = ('000' + num).slice(-3);
+      window.location.href = '/ghazal/' + formatted + '/';
+    }
+  </script>
