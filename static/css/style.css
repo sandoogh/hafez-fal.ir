@@ -183,11 +183,32 @@ main {
 }
 
 .tafsir {
-  border-top: 1px solid var(--tafsir-border);
+  border-top: none;
   padding-top: 1.5rem;
   margin-bottom: 2rem;
   text-align: right;
   line-height: 2;
+}
+.tafsir::before {
+  content: "";
+  display: block;
+  width: 20rem;
+  max-width: 80%;
+  border-top: 1px solid var(--tafsir-border);
+  margin: 0 auto 1rem;
+}
+.tafsir summary {
+  cursor: pointer;
+  color: var(--accent);
+  font-weight: 700;
+  text-align: center;
+  list-style: none;
+}
+.tafsir summary::-webkit-details-marker {
+  display: none;
+}
+.tafsir p {
+  margin-top: 1rem;
 }
 
 .ghazal-nav {
