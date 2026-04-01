@@ -89,7 +89,7 @@ def build_ghazal(meta, body, index):
     for i in range(0, len(meta["mesra"]), 2):
         first = meta["mesra"][i]
         second = meta["mesra"][i + 1] if i + 1 < len(meta["mesra"]) else ""
-        mesra_html += f'      <div class="beyt"><span class="mesra">{first}</span><span class="mesra">{second}</span></div>\n'
+        mesra_html += f'      <div class="beyt"><span class="mesra">{second}</span><span class="mesra">{first}</span></div>\n'
 
     tpl = render(
         load_template("ghazal.html"),
