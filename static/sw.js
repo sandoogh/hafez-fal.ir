@@ -1,4 +1,4 @@
-var CACHE = 'hafez-fal-v1';
+var CACHE = 'hafez-fal-v1.1';
 var GHAZAL_COUNT = 495;
 
 self.addEventListener('install', function(e) {

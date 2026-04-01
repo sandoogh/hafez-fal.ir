@@ -153,10 +153,10 @@ main {
 }
 .beyt {
   display: flex;
+  flex-direction: row;
   justify-content: center;
-  gap: 2rem;
+  gap: 3rem;
   margin-bottom: 0.75rem;
-  flex-wrap: wrap;
 }
 .mesra {
   flex: 1;
@@ -164,15 +164,15 @@ main {
   max-width: 20rem;
 }
 .beyt .mesra:first-child {
-  text-align: right;
+  text-align: left;
 }
 .beyt .mesra:last-child {
-  text-align: left;
+  text-align: right;
 }
 
 @media (max-width: 600px) {
   .beyt {
-    flex-direction: column-reverse;
+    flex-direction: column;
     gap: 0;
     margin-bottom: 1.25rem;
   }
