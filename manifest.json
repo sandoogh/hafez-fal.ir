@@ -1,0 +1,18 @@
+{
+  "name": "فال حافظ",
+  "short_name": "فال حافظ",
+  "description": "فال حافظ، ساده، تمیز و بدون تبلیغات. قابل نصب و استفاده آفلاین",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#288689",
+  "dir": "rtl",
+  "lang": "fa",
+  "icons": [
+    {
+      "src": "/static/img/icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
