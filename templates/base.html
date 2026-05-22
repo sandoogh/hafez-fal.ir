@@ -52,6 +52,14 @@
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/sw.js');
+      var isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+      function precacheAll() {
+        navigator.serviceWorker.ready.then(function(reg) {
+          if (reg.active) reg.active.postMessage({type: 'PRECACHE_ALL'});
+        });
+      }
+      if (isStandalone) precacheAll();
+      window.addEventListener('appinstalled', precacheAll);
     }
   </script>
 </body>
