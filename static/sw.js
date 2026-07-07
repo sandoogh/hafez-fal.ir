@@ -1,4 +1,4 @@
-var CACHE = 'hafez-fal-v2';
+var CACHE = 'hafez-fal-v3';
 var GHAZAL_COUNT = 495;
 
 var SHELL_URLS = [
@@ -6,7 +6,9 @@ var SHELL_URLS = [
   '/list/',
   '/about/',
   '/static/css/style.css',
-  '/static/img/icon.png',
+  '/static/img/icon-192.png',
+  '/static/img/icon-512.png',
+  '/static/img/apple-touch-icon.png',
   '/manifest.json'
 ];
 
