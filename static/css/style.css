@@ -204,6 +204,10 @@ main {
   color: var(--text-muted);
   margin-bottom: 2rem;
 }
+.home .invocation {
+  color: var(--text);
+  line-height: 2.2;
+}
 
 .btn {
   display: inline-block;
