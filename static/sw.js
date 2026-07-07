@@ -1,4 +1,4 @@
-var CACHE = 'hafez-fal-v3';
+var CACHE = 'hafez-fal-v4';
 var GHAZAL_COUNT = 495;
 
 var SHELL_URLS = [
@@ -6,6 +6,7 @@ var SHELL_URLS = [
   '/list/',
   '/about/',
   '/static/css/style.css',
+  '/static/js/search.js',
   '/static/img/icon-192.png',
   '/static/img/icon-512.png',
   '/static/img/apple-touch-icon.png',
@@ -65,7 +66,7 @@ self.addEventListener('message', function(e) {
 
 function precacheAllGhazals() {
   return caches.open(CACHE).then(function(cache) {
-    var urls = [];
+    var urls = ['/search-index.json'];
     for (var i = 1; i <= GHAZAL_COUNT; i++) {
       var num = ('000' + i).slice(-3);
       urls.push('/ghazal/' + num + '/');

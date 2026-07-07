@@ -32,11 +32,20 @@
       <a href="/">خانه</a>
       <a href="/list/">فهرست غزل‌ها</a>
       <a href="/about/">درباره</a>
-      <button class="theme-toggle" onclick="toggleTheme()" aria-label="تغییر تم"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2a10 10 0 0 1 0 20V2z"/></svg></button>
+      <button class="icon-btn" onclick="openSearch()" aria-label="جستجو"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16" y2="16"/></svg></button>
+      <button class="icon-btn" onclick="toggleTheme()" aria-label="تغییر تم"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2a10 10 0 0 1 0 20V2z"/></svg></button>
     </nav>
   </header>
 
   {content}
+
+  <dialog id="search-dialog" class="search-dialog">
+    <div class="search-box">
+      <input id="search-input" type="search" placeholder="جستجو در غزل‌ها…" autocomplete="off">
+      <button class="icon-btn" onclick="document.getElementById('search-dialog').close()" aria-label="بستن"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
+    </div>
+    <div id="search-results" class="search-results"></div>
+  </dialog>
 
   <footer>
     <p>ساخته شده توسط کیاوش و محمدحسین</p>
@@ -49,6 +58,7 @@
       localStorage.setItem('theme', next);
     }
   </script>
+  <script src="/static/js/search.js" defer></script>
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/sw.js');

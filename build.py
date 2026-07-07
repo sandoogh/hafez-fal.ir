@@ -1,9 +1,16 @@
 #!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.9"
+# dependencies = ["davat"]
+# ///
 """Build script for hafez-fal.ir — generates the static site from markdown content."""
 
+import json
 import re
 import shutil
 from pathlib import Path
+
+from davat import normalize_persian
 
 SITE_URL = "https://hafez-fal.ir"
 CONTENT_DIR = Path("content/ghazal")
@@ -133,6 +140,38 @@ def build_about():
     return wrap_page("درباره این سایت - فال حافظ", "درباره سایت فال حافظ", "/about/", tpl)
 
 
+# Letter unification beyond davat: hamza/alef variants a user may type either way
+FOLD_TRANSLATION = str.maketrans(
+    {"ي": "ی", "ك": "ک", "أ": "ا", "إ": "ا", "آ": "ا", "ؤ": "و", "ئ": "ی", "ة": "ه", "ۀ": "ه", "ى": "ی"}
+)
+FOLD_STRIP_RE = re.compile("[\\u064b-\\u065f\\u0670\\u0640]")  # diacritics + tatweel
+FOLD_JOIN_RE = re.compile("[\\s\\u200c]+")  # whitespace + ZWNJ
+
+
+def fold_for_search(text):
+    """Collapse text to a match skeleton: unified letters, no diacritics, no spaces or ZWNJ.
+
+    Must stay in sync with the query fold in static/js/search.js.
+    """
+    text = normalize_persian(text).translate(FOLD_TRANSLATION)
+    text = FOLD_STRIP_RE.sub("", text)
+    return FOLD_JOIN_RE.sub("", text)
+
+
+def build_search_index(all_ghazals):
+    entries = []
+    for index, meta, _ in sorted(all_ghazals, key=lambda x: x[0]):
+        entries.append(
+            {
+                "n": index,
+                "t": meta.get("title", ""),
+                "v": meta["mesra"],
+                "s": [fold_for_search(m) for m in meta["mesra"]],
+            }
+        )
+    return json.dumps(entries, ensure_ascii=False, separators=(",", ":"))
+
+
 def build_sitemap(all_ghazals):
     urls = f"  <url><loc>{SITE_URL}/</loc><priority>1.0</priority></url>\n"
     urls += f"  <url><loc>{SITE_URL}/about/</loc><priority>0.5</priority></url>\n"
@@ -150,6 +189,7 @@ def main():
     # Copy static files
     static_out = OUTPUT_DIR / "static"
     shutil.copytree(STATIC_SRC / "img", static_out / "img")
+    shutil.copytree(STATIC_SRC / "js", static_out / "js")
     (static_out / "css").mkdir(parents=True)
     shutil.copy2(STATIC_SRC / "css" / "style.css", static_out / "css" / "style.css")
 
@@ -195,6 +235,9 @@ def main():
     about_dir = OUTPUT_DIR / "about"
     about_dir.mkdir()
     (about_dir / "index.html").write_text(build_about(), encoding="utf-8")
+
+    # Build search index
+    (OUTPUT_DIR / "search-index.json").write_text(build_search_index(all_ghazals), encoding="utf-8")
 
     # Build sitemap + robots
     (OUTPUT_DIR / "sitemap.xml").write_text(build_sitemap(all_ghazals), encoding="utf-8")

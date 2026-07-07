@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-python3 build.py
+uv run build.py
 
 cd public
 git init -b gh-pages
